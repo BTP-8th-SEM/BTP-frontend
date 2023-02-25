@@ -7,7 +7,7 @@ import SignUp from './Components/SignUp';
 function App() {
   return (
     <div className="App">
-      // write your code here.
+      <Auth/>
     </div>
   );
 }
