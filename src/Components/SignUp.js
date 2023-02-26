@@ -7,6 +7,7 @@ const SignUp = () => {
     const [pass, setPass] = useState('');
     const [passAgain, setPassAgain] = useState('');
     const [role, setRole] = useState('');
+    const [selectedOption, setSelectedOption] = useState('');
 
     const handleNameInput = (e) => {
         setName(e.target.value);
@@ -24,10 +25,18 @@ const SignUp = () => {
         setPassAgain(e.target.value);
     }
 
+    const handleOptionSelect = (event) => {
+        setSelectedOption(event.target.textContent);
+    };
+    
     const hitSubmit = (e) => {
         e.preventDefault();
         alert(`${name}, ${email}, ${pass}, ${passAgain}, ${role}`);
     }
+
+
+    
+
     return (
         <div className="signup-box">
             <h2>Sign Up</h2>
@@ -70,17 +79,32 @@ const SignUp = () => {
                         />
                     </div>
 
-                    <div className="dropdown">
-                        <button className="btn btn-secondary dropdown-toggle" type="button" id="role-d" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Select Role
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a className="dropdown-item" href="#">Teacher</a>
-                            <a className="dropdown-item" href="#">Student</a>
+                    <div>
+                        <div className="dropdown">
+                            <button
+                                className="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                { selectedOption || 'Select an option' }
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a className="dropdown-item" onClick={handleOptionSelect}>
+                                        Teacher
+                                    </a>
+                                </li>
+                                <li>
+                                    <a className="dropdown-item" onClick={handleOptionSelect}>
+                                        Student
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <button type="submit" className="btn btn-success" id="submit">Submit</button>
-
 
                 </div>
             </form>
