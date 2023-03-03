@@ -1,3 +1,4 @@
+import "./../Styles/navbar.css"
 const NavBar = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
@@ -13,6 +14,8 @@ const NavBar = () => {
                         </li>
                     </ul>
                 </div>
+                <button type="button" class="btn btn-light mx-3">Login</button>
+                <button type="button" class="btn btn-outline-light">Sign up</button>
             </div>
         </nav>
     );

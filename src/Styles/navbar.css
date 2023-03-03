@@ -1,0 +1,25 @@
+.btn-outline-light {
+    font-weight: 500;
+    color: #b39ddb;
+    border-color: #B39DDB;
+    background: transparent;
+}
+
+.btn-outline-light:hover {
+    color: #343a40;
+    background: #B39DDB;
+    border-color: #B39DDB;
+}
+
+.btn-light {
+    font-weight: 500;
+    color: #343a40;
+    border-color: #B39DDB;
+    background-color: #B39DDB;
+}
+
+.btn-light:hover {
+    color: #343a40;
+    background: #B39DDB;
+    border-color: #B39DDB;
+}
