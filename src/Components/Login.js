@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './../Styles/login.css';
-const Login = () => {
+const Login = (props) => {
     const [emailVal, setEmailVal] = useState('');
     const [passVal, setPassVal] = useState('');
     const handleEmailInputChange = (e) => {
@@ -14,12 +14,15 @@ const Login = () => {
         e.preventDefault();
         alert(`${emailVal}, ${passVal}`)
     }
+    const handleSignupClick = () => {
+        props.cb_handle_login_state(false);
+    }
 
     return (
         <div className="login-box">
             <h2> Login </h2>
             <form onSubmit={hitSubmit}>
-                <div class="login-form">
+                <div className="login-form">
                     <div className="mb-3">
                         <label className="form-label" id="email-l">Email</label>
                         <input type="text"
@@ -39,7 +42,17 @@ const Login = () => {
 
                     <button type="submit"
                         className="btn btn-success"
-                        id="s">Submit</button>
+                        id="s">Submit
+                    </button>
+
+                    <div className='link'>
+                        <button type="button" 
+                                className="btn btn-link" 
+                                onClick={handleSignupClick}> Not a user? Create Account.
+                        </button>
+                    </div>
+                    
+
 
                 </div>
             </form>
