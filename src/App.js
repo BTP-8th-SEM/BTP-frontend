@@ -3,6 +3,7 @@ import './App.css';
 import React, { useState } from 'react';
 import NavBar from './Components/NavBar';
 import Auth from './Components/Auth';
+import Home from './Components/Home';
 import Footer from './Components/Footer'
 
 function App() {
@@ -19,9 +20,10 @@ function App() {
 	return (
 		<div className="App">
 			<NavBar cb_handle_navbar = {handleNavBarCallBack} />
-			<Auth isLogin = {isLogin}
+			{/* <Auth isLogin = {isLogin}
 				  cb_handle_login_state = {handleLoginStateCallBack}
-			/>
+			/> */}
+			<Home />
 			<Footer />
 		</div>
 	);
