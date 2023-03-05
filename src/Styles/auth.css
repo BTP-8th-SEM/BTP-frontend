@@ -16,6 +16,10 @@
 
 .sign-up {
     margin:4rem 2rem 1rem 4rem;
-    background-color: rgba(203, 75, 22, 0.1);
-    border:2px solid rgb(203, 75, 22)
+    /* background-color: rgba(203, 75, 22, 0.1);
+    border:2px solid rgb(203, 75, 22) */
+}
+
+img {
+    width: 90%;
 }

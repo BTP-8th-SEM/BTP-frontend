@@ -1,5 +1,14 @@
 import "./../Styles/navbar.css"
-const NavBar = () => {
+const NavBar = (props) => {
+
+    const onLoginClick = () => {
+        props.cb_handle_navbar(true);
+    }
+
+    const onSignupClick = () => {
+        props.cb_handle_navbar(false);
+    }
+
     return (
         <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div className="container-fluid">
@@ -14,8 +23,8 @@ const NavBar = () => {
                         </li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-light mx-3">Login</button>
-                <button type="button" class="btn btn-outline-light">Sign up</button>
+                <button type="button" class="btn btn-light mx-3" onClick = {onLoginClick}>Login</button>
+                <button type="button" class="btn btn-outline-light" onClick = {onSignupClick}>Sign up</button>
             </div>
         </nav>
     );
