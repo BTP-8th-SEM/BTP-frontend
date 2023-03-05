@@ -11,11 +11,11 @@ const Auth = (props) => {
 
     return (
         <div className="auth">
-            <div class="sign-up"> 
+            <div className="sign-up"> 
                  <img src={welcome}/>
             </div>
 
-            <div class="login">
+            <div className="login">
                 {
                     props.isLogin ? <Login cb_handle_login_state = {handleLoginStateCallBack} /> : 
                             <SignUp cb_handle_login_state = {handleLoginStateCallBack}/> 

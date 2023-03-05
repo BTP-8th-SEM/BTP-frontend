@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./../Styles/sign-up.css";
 
-const SignUp = () => {
+const SignUp = (props) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
@@ -35,7 +35,9 @@ const SignUp = () => {
     }
 
 
-    
+    const handleLoginClick = () => {
+        props.cb_handle_login_state(true);
+    }
 
     return (
         <div className="signup-box">
@@ -105,6 +107,13 @@ const SignUp = () => {
                         </div>
                     </div>
                     <button type="submit" className="btn btn-success" id="submit">Submit</button>
+
+                    <div className='link'>
+                        <button type="button" 
+                                className="btn btn-link" 
+                                onClick={handleLoginClick}> Already a user? Login here.
+                        </button>
+                    </div>
 
                 </div>
             </form>

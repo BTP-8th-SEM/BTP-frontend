@@ -22,7 +22,7 @@ const Login = (props) => {
         <div className="login-box">
             <h2> Login </h2>
             <form onSubmit={hitSubmit}>
-                <div class="login-form">
+                <div className="login-form">
                     <div className="mb-3">
                         <label className="form-label" id="email-l">Email</label>
                         <input type="text"
