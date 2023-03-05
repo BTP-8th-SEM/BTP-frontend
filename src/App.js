@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 import React, { useState } from 'react';
@@ -14,10 +13,15 @@ function App() {
 		setIsLogin(state);
 	}
 
+	const handleLoginStateCallBack = (state) => {
+		setIsLogin(state);
+	}
 	return (
 		<div className="App">
 			<NavBar cb_handle_navbar = {handleNavBarCallBack} />
-			<Auth isLogin = {isLogin} />
+			<Auth isLogin = {isLogin}
+				  cb_handle_login_state = {handleLoginStateCallBack}
+			/>
 			<Footer />
 		</div>
 	);

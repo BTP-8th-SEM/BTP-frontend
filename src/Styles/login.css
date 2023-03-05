@@ -5,3 +5,13 @@
     margin-top:1rem;
     padding:0.5rem;
 }
+
+.link {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-link {
+    text-decoration: none;
+    color:inherit;
+}
