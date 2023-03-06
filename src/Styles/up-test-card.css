@@ -2,3 +2,7 @@
     margin : 1rem;
     width: 25rem;
 }
+.center {
+    display:flex;
+    justify-content: center;
+}
