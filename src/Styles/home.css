@@ -3,5 +3,9 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin : 3rem;
 }
 
+.homeChild {
+    width:100%;
+}

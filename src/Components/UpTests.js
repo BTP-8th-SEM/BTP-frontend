@@ -1,7 +1,16 @@
+import UpTestCard from './UpTestCard';
+import './../Styles/up-tests.css'
+
 const UpTests = () => {
     return (
         <div>
-            Upcoming Tests
+            <div className='cards-container'>
+                <UpTestCard />
+                <UpTestCard />
+                <UpTestCard />
+                <UpTestCard />
+                <UpTestCard />  
+            </div>
         </div>
     );
 }
