@@ -1,5 +1,5 @@
 import "./../Styles/navbar.css"
-const NavBar = (props) => {
+const NavBar = () => {
 
     return (
         <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">

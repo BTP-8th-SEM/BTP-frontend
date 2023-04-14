@@ -1,33 +1,36 @@
 import './App.css';
-
-import React, { useState } from 'react';
-import { BrowserRouter } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 import NavBar from './Components/NavBar';
+import Footer from './Components/Footer';
 import Auth from './Components/Auth';
-import Home from './Components/Home';
-import Footer from './Components/Footer'
+import TDashboard from './Components/TDashBoard';
+import SDashboard from './Components/Student/SDashBoard';
 
 function App() {
 
-	const [isLogin, setIsLogin] = useState(false);
-
-	const handleNavBarCallBack = (state) => {
-		setIsLogin(state);
-	}
-
-	const handleLoginStateCallBack = (state) => {
-		setIsLogin(state);
-	}
+	const [tname, setTName] = useState("");
+	const[tid, setTid] = useState("");
+	const[sname, setSName] = useState("");
+	const[sid, setSid] = useState("");
+	useEffect(
+		()=>{
+			setTName("Ramesh Shetty");
+			setTid("ramesh.shetty@intest.faculty.edu");
+			setSName("Gaurav Sonawane");
+			setSid("gaurav.sonawane@intest.edu");
+		}
+	,[]);
 	return (
 		<div className="App">
-			<BrowserRouter>
-				<NavBar cb_handle_navbar={handleNavBarCallBack} />
-					{/* <Auth isLogin = {isLogin}
-					cb_handle_login_state = {handleLoginStateCallBack}
-					/> */}
-				<Home />
-				<Footer />
-			</BrowserRouter>
+			<NavBar />
+			<Auth />
+
+			{/* <TDashboard tname={tname} tid={tid}/> */}
+
+			{/* <SDashboard sname={sname} sid={sid} /> */}
+
+			{/* <Home /> */}
+			<Footer />
 		</div>
 	);
 }

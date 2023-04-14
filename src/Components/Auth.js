@@ -1,13 +1,8 @@
 import Login from "./Login";
-import SignUp from "./SignUp";
 import React, { useState } from "react";
 import "./../Styles/auth.css"
 import welcome from "./../Images/welcome.jpg";
-const Auth = (props) => {
-
-    const handleLoginStateCallBack = (state) => {
-        props.cb_handle_login_state(state);
-    }
+const Auth = () => {
 
     return (
         <div className="auth">
@@ -16,10 +11,7 @@ const Auth = (props) => {
             </div>
 
             <div className="login">
-                {
-                    props.isLogin ? <Login cb_handle_login_state = {handleLoginStateCallBack} /> : 
-                            <SignUp cb_handle_login_state = {handleLoginStateCallBack}/> 
-                }
+                <Login/>
             </div>
 
         </div>

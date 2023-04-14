@@ -1,45 +1,39 @@
-import PreTestCard from './PreTestCard';
-import './../Styles/pre-tests.css'
+import SUpTestCard from './SUpTestCard';
+import './../../Styles/up-tests.css'
 
-const PreTests = () => {
-    const previousTests = [
+const SUpTests = () => {
+    const supComingTests = [
         {
             "id": "1",
             "title": "Test 1",
             "max-marks": "20",
             "duration": "1 hour",
-            "marks" : "19"
+            "start-datetime": "14-02-2022, 11:00 AM IST"
         },
         {
             "id": "2",
             "title": "Test 2",
             "max-marks": "20",
             "duration": "1 hour",
-            "marks" : "19"
+            "start-datetime": "14-03-2022, 11:00 AM IST"
         },
         {
-            "id": "4",
+            "id": "1",
             "title": "End Sem",
             "max-marks": "60",
             "duration": "3 hour",
-            "marks" : "59"
-        },{
-            "id": "5",
-            "title": "End Sem",
-            "max-marks": "60",
-            "duration": "3 hour",
-            "marks" : "59"
+            "start-datetime": "15-04-2022, 11:00 AM IST"
         }
     ]
     return (
         <div>
             <div className='cards-container'>
-                {previousTests.map((test, index) => (
-                   <PreTestCard test = {test}/>
+                {supComingTests.map((test, index) => (
+                   <SUpTestCard test = {test}/>
                 ))}
             </div>
         </div>
     );
 }
 
-export default PreTests;
+export default SUpTests;

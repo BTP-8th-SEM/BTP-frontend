@@ -9,7 +9,7 @@ const PreTestCard = (props) => {
                     <h6>Your Marks : {props.test["marks"]}</h6>
                     <h6>Duration : {props.test["duration"]}</h6>
                     {/* <p className="card-text">With supporting text below as a natural lead-in to additional content.</p> */}
-                    <button className="btn btn-primary">See Analytics</button>
+                    <button className="btn btn-light">See Analytics</button>
                     
                 </div>
         </div>  
