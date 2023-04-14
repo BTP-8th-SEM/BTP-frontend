@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './../Styles/login.css';
-const Login = (props) => {
+const Login = () => {
     const [emailVal, setEmailVal] = useState('');
     const [passVal, setPassVal] = useState('');
+    const [selectedOption, setSelectedOption] = useState('');
     const handleEmailInputChange = (e) => {
         setEmailVal(e.target.value);
     }
@@ -14,9 +15,10 @@ const Login = (props) => {
         e.preventDefault();
         alert(`${emailVal}, ${passVal}`)
     }
-    const handleSignupClick = () => {
-        props.cb_handle_login_state(false);
-    }
+
+    const handleOptionSelect = (event) => {
+        setSelectedOption(event.target.textContent);
+    };
 
     return (
         <div className="login-box">
@@ -40,20 +42,36 @@ const Login = (props) => {
                             onChange={handlePassInputChange} />
                     </div>
 
+                    <div>
+                        <div className="dropdown">
+                            <button
+                                className="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                { selectedOption || 'Select your role' }
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a className="dropdown-item" onClick={handleOptionSelect}>
+                                        Teacher
+                                    </a>
+                                </li>
+                                <li>
+                                    <a className="dropdown-item" onClick={handleOptionSelect}>
+                                        Student
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <button type="submit"
                         className="btn btn-success"
                         id="s">Submit
                     </button>
-
-                    <div className='link'>
-                        <button type="button" 
-                                className="btn btn-link" 
-                                onClick={handleSignupClick}> Not a user? Create Account.
-                        </button>
-                    </div>
-                    
-
-
                 </div>
             </form>
 

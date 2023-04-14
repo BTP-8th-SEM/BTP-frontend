@@ -1,6 +1,5 @@
-import './../Styles/up-test-card.css'
-import TakeTest from './TakeTest';
-const UpTestCard = (props) => {
+import './../../Styles/up-test-card.css'
+const SUpTestCard = (props) => {
     return (
         <div className="card">
             <div className="card-body">
@@ -10,7 +9,7 @@ const UpTestCard = (props) => {
                 <h6>Duration : {props.test["duration"]}</h6>
                 <h6>Start Date and Time : {props.test["start-datetime"]}</h6>
                 {/* <p className="card-text">With supporting text below as a natural lead-in to additional content.</p> */}
-                <button to="/take-test" target="_blank" rel="noopener noreferrer" className="btn btn-light">Edit Test</button>
+                <button to="/take-test" target="_blank" rel="noopener noreferrer" className="btn btn-light">Start Test</button>
 
             </div>
         </div>
@@ -18,4 +17,4 @@ const UpTestCard = (props) => {
     );
 }
 
-export default UpTestCard;
+export default SUpTestCard;
