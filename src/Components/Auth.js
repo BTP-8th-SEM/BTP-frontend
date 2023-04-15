@@ -6,12 +6,12 @@ const Auth = () => {
 
     return (
         <div className="auth">
-            <div className="sign-up"> 
-                 <img src={welcome}/>
+            <div className="sign-up">
+                <img src={welcome} />
             </div>
 
             <div className="login">
-                <Login/>
+                <Login />
             </div>
 
         </div>
