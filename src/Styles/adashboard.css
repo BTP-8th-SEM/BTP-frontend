@@ -1,0 +1,9 @@
+.chart {
+    margin-bottom: 2rem;
+}
+.main {
+    margin: 3rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}

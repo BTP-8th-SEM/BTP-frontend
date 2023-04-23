@@ -5,6 +5,7 @@ import Footer from './Components/Footer';
 import Auth from './Components/Auth';
 import TDashboard from './Components/TDashBoard';
 import SDashboard from './Components/Student/SDashBoard';
+import ADashboard from './Components/Analysis/ADashboard';
 
 function App() {
 
@@ -23,11 +24,13 @@ function App() {
 	return (
 		<div className="App">
 			<NavBar />
-			<Auth />
+			{/* <Auth /> */}
 
 			{/* <TDashboard tname={tname} tid={tid}/> */}
 
 			{/* <SDashboard sname={sname} sid={sid} /> */}
+
+			<ADashboard />
 
 			{/* <Home /> */}
 			<Footer />
