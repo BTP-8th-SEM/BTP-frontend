@@ -1,6 +1,7 @@
 import "./../Styles/tdashboard.css";
 import UpTests from "./UpTests";
 import PreTests from "./PreTests";
+import { Link } from "react-router-dom";
 const TDashboard = (props) => {
     return (
         <div className="container main">
@@ -11,15 +12,15 @@ const TDashboard = (props) => {
                     <div className="tname">Name: {props.tname}</div>
                 </div>
                 <div className="c2">
-                    <button type="button" class="btn btn-dark">Create Test</button>
+                    <Link type="button" class="btn btn-dark" to="/create-test">Create Test</Link>
                 </div>
-                
+
             </div>
             <div className="upcoming-sec">
                 <h3 className="center">Upcoming Tests</h3>
                 <UpTests />
             </div>
-            
+
             <div className="previous-sec">
                 <h3 className="center">Previous Tests</h3>
                 <PreTests />

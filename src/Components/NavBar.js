@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import "./../Styles/navbar.css"
 const NavBar = () => {
 
     return (
+
         <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">InTest</a>
@@ -12,6 +14,9 @@ const NavBar = () => {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <a className="nav-link active" aria-current="page" href="#">Help</a>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to="/profile">Profile</Link>
                         </li>
                     </ul>
                 </div>

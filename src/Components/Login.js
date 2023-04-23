@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './../Styles/login.css';
+import { Link } from 'react-router-dom';
 const Login = () => {
     const [emailVal, setEmailVal] = useState('');
     const [passVal, setPassVal] = useState('');
@@ -8,7 +9,7 @@ const Login = () => {
         setEmailVal(e.target.value);
     }
     const handlePassInputChange = (e) => {
-        
+
         setPassVal(e.target.value);
     }
     const hitSubmit = (e) => {
@@ -51,7 +52,7 @@ const Login = () => {
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
-                                { selectedOption || 'Select your role' }
+                                {selectedOption || 'Select your role'}
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li>
@@ -68,10 +69,9 @@ const Login = () => {
                         </div>
                     </div>
 
-                    <button type="submit"
-                        className="btn btn-success"
-                        id="s">Submit
-                    </button>
+                    <Link type="submit" className="btn btn-success" id="s" to="/teacherDash">
+                        Login
+                    </Link>
                 </div>
             </form>
 
