@@ -10,6 +10,7 @@ import {
 	Routes as Switch,
 	Route,
 } from "react-router-dom";
+import CreateTest from './Components/ExamPage/CreateTest';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
 				<Route path="/teacherDash" element={<TDashboard tname={tname} tid={tid} />} />
 				<Route path="/studentDash" element={<SDashboard sname={sname} sid={sid} />} />
 				<Route path="/profile" element={<UserProfile />} />
+				<Route path="/create-test" element={<CreateTest />} />
 			</Switch>
 			{/* <Home /> */}
 

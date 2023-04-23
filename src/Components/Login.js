@@ -69,9 +69,9 @@ const Login = () => {
                         </div>
                     </div>
 
-                    <button type="submit" className="btn btn-success" id="s" onClick={hitSubmit}>
+                    <Link type="submit" className="btn btn-success" id="s" to="/teacherDash">
                         Login
-                    </button>
+                    </Link>
                 </div>
             </form>
 
