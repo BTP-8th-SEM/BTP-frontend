@@ -1,0 +1,34 @@
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.pattern1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pad {
+    padding: 0 2rem;
+}
+.mart {
+    margin-top: 1rem;
+}
+
+.class-analysis {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin: 0 10rem;
+}
+
+.student-list {
+    margin: 5rem 10rem;
+}
+.pvf {
+    width: 20rem;
+}
+
+.ahl {
+    width:35rem;
+}

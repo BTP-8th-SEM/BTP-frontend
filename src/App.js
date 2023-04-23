@@ -6,6 +6,7 @@ import Auth from './Components/Auth';
 import TDashboard from './Components/TDashBoard';
 import SDashboard from './Components/Student/SDashBoard';
 import ADashboard from './Components/Analysis/ADashboard';
+import ClassAnalyticsDashboard from './Components/Analysis/ClassAnalyticsDashboard'
 
 function App() {
 
@@ -30,7 +31,9 @@ function App() {
 
 			{/* <SDashboard sname={sname} sid={sid} /> */}
 
-			<ADashboard />
+			{/* <ADashboard /> */}
+
+			<ClassAnalyticsDashboard />
 
 			{/* <Home /> */}
 			<Footer />
