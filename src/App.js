@@ -11,6 +11,8 @@ import {
 	Route,
 } from "react-router-dom";
 import CreateTest from './Components/ExamPage/CreateTest';
+import ADashboard from './Components/Analysis/ADashboard';
+import ClassAnalyticsDashboard from './Components/Analysis/ClassAnalyticsDashboard'
 
 function App() {
 
@@ -35,9 +37,11 @@ function App() {
 				<Route path="/teacherDash" element={<TDashboard tname={tname} tid={tid} />} />
 				<Route path="/studentDash" element={<SDashboard sname={sname} sid={sid} />} />
 				<Route path="/profile" element={<UserProfile />} />
+				<Route path="/classAnalyticsDashboard" element={<ClassAnalyticsDashboard />} />
 				<Route path="/create-test" element={<CreateTest />} />
 			</Switch>
-			{/* <Home /> */}
+
+			
 
 			<Footer />
 		</div>
