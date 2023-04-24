@@ -1,22 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
+import { useNavigate } from "react-router-dom";
 import './../Styles/login.css';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
+import axios from 'axios';
 const Login = () => {
+    const navigate = useNavigate();
     const [emailVal, setEmailVal] = useState('');
     const [passVal, setPassVal] = useState('');
-    
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [role, setRole] = useState(null);
+
+    const EmailContext = createContext();
+
     const fetchApiData = async (url) => {
-        try {
-            const res = await fetch(url);
-            console.log(res);
-            // const data = await res.json();
-            // alert(data);
-        }
-        catch (error){
-            console.log(error)
-        }
+        axios.create({
+            baseURL: "http://localhost:8000/"
+        })
+        .get(url).then(
+            (response) => {
+                setIsAuthenticated(response.data['isAuthenticated']);
+                setRole(response.data['role']);
+            }
+        ).catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });
     }
-    
+    useEffect(()=>{
+        if(isAuthenticated){
+            navigate(role === 'Teacher' ? '/teacherDash' : '/studentDash');
+        }
+    },[isAuthenticated,role])
     const handleEmailInputChange = (e) => {
         setEmailVal(e.target.value);
     }
@@ -26,13 +43,24 @@ const Login = () => {
     }
     const hitSubmit = (e) => {
         e.preventDefault();
-        const LOGIN_API = `127.0.0.1:8000/login/?user_email=${emailVal}&password=${passVal}`
-        fetchApiData(LOGIN_API);
+        console.log('emailVal, passVal' + emailVal + " " + passVal);
+        if(emailVal === "" || passVal === "") {
+            alert('Empty Fields, try again!')
+        }
+        else {
+            const LOGIN_API = `/login?user_email=${emailVal}&password=${passVal}`
+            console.log(LOGIN_API)
+            fetchApiData(LOGIN_API);
+            // if(isAuthenticated === false) {
+            //     alert('Invalid Credentials!!!');
+            // }
+        }
+        
     }
 
 
     return (
-        <div className="login-box">
+            <div className="login-box">
             <h2 className='center'> Login </h2>
             <form onSubmit={hitSubmit}>
                 <div className="login-form">
@@ -70,6 +98,7 @@ const Login = () => {
             </form>
 
         </div>
+        
     );
 }
 

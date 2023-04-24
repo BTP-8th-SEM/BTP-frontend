@@ -96,7 +96,7 @@ const ADashboard = () => {
                                 <p className="card-text res-m">Maximum Marks: <b>{maxMarks}</b></p>
                             </div>
                         </div>
-                    </div>
+                    </div>  
                 </div>
             </div>
 
@@ -124,6 +124,8 @@ const ADashboard = () => {
                     </div>
                 </div>
             </div>
+
+            
 
         </div>
 
