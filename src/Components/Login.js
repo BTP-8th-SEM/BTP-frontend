@@ -4,7 +4,19 @@ import { Link } from 'react-router-dom';
 const Login = () => {
     const [emailVal, setEmailVal] = useState('');
     const [passVal, setPassVal] = useState('');
-    const [selectedOption, setSelectedOption] = useState('');
+    
+    const fetchApiData = async (url) => {
+        try {
+            const res = await fetch(url);
+            console.log(res);
+            // const data = await res.json();
+            // alert(data);
+        }
+        catch (error){
+            console.log(error)
+        }
+    }
+    
     const handleEmailInputChange = (e) => {
         setEmailVal(e.target.value);
     }
@@ -14,16 +26,14 @@ const Login = () => {
     }
     const hitSubmit = (e) => {
         e.preventDefault();
-        alert(`${emailVal}, ${passVal}`)
+        const LOGIN_API = `127.0.0.1:8000/login/?user_email=${emailVal}&password=${passVal}`
+        fetchApiData(LOGIN_API);
     }
 
-    const handleOptionSelect = (event) => {
-        setSelectedOption(event.target.textContent);
-    };
 
     return (
         <div className="login-box">
-            <h2> Login </h2>
+            <h2 className='center'> Login </h2>
             <form onSubmit={hitSubmit}>
                 <div className="login-form">
                     <div className="mb-3">
@@ -43,35 +53,19 @@ const Login = () => {
                             onChange={handlePassInputChange} />
                     </div>
 
-                    <div>
-                        <div className="dropdown">
-                            <button
-                                className="btn btn-secondary dropdown-toggle"
-                                type="button"
-                                id="dropdownMenuButton"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                            >
-                                {selectedOption || 'Select your role'}
-                            </button>
-                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li>
-                                    <a className="dropdown-item" onClick={handleOptionSelect}>
-                                        Teacher
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item" onClick={handleOptionSelect}>
-                                        Student
-                                    </a>
-                                </li>
-                            </ul>
+                    <Link type="submit" className="btn btn-success" onClick={hitSubmit} id="s" to="/teacherDash">
+                        Submit
+                    </Link>
+
+                    <div className='notice'>
+                        <h4 className='center'> Important </h4>
+                        <div className="notice-body">
+                            <ol>
+                                <li>Please contact Organization Admin to <b>Create Account.</b></li>
+                                <li> Once you login, you'll be redirected to dashboard according to your role.</li>
+                            </ol>
                         </div>
                     </div>
-
-                    <Link type="submit" className="btn btn-success" id="s" to="/teacherDash">
-                        Login
-                    </Link>
                 </div>
             </form>
 
