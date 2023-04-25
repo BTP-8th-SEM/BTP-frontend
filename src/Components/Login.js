@@ -1,10 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 import './../Styles/login.css';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
+import axios from 'axios';
+import EmailContext from '../Context/User/EmailContext';
+
 const Login = () => {
+    const emailContextVar = useContext(EmailContext);
+    const navigate = useNavigate();
     const [emailVal, setEmailVal] = useState('');
     const [passVal, setPassVal] = useState('');
-    const [selectedOption, setSelectedOption] = useState('');
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [role, setRole] = useState(null);
+
+
+    const fetchApiData = async (url) => {
+        axios.create({
+            baseURL: "http://localhost:8000/"
+        })
+        .get(url).then(
+            (response) => {
+                setIsAuthenticated(response.data['isAuthenticated']);
+                emailContextVar.update(emailVal)
+                setRole(response.data['role']);
+            }
+        ).catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });
+    }
+    
     const handleEmailInputChange = (e) => {
         setEmailVal(e.target.value);
     }
@@ -14,16 +42,32 @@ const Login = () => {
     }
     const hitSubmit = (e) => {
         e.preventDefault();
-        alert(`${emailVal}, ${passVal}`)
+        console.log('emailVal, passVal' + emailVal + " " + passVal);
+        if(emailVal === "" || passVal === "") {
+            alert('Empty Fields, try again!')
+        }
+        else {
+            const LOGIN_API = `/login?user_email=${emailVal}&password=${passVal}`
+            console.log(LOGIN_API)
+            fetchApiData(LOGIN_API);
+            // if(isAuthenticated === false) {
+            //     alert('Invalid Credentials!!!');
+            // }
+        }
+        
     }
+        if(isAuthenticated){
+            // emailContextVar.update(emailVal);
+            navigate(role === 'Teacher' ? '/teacherDash' : '/studentDash', { replace: true });
+            
+            console.log("in use effect : " + emailContextVar.email);
+        }
 
-    const handleOptionSelect = (event) => {
-        setSelectedOption(event.target.textContent);
-    };
 
     return (
-        <div className="login-box">
-            <h2> Login </h2>
+            <div className="login-box">
+            <h2 className='center'> Login </h2>
+            {emailContextVar.email}
             <form onSubmit={hitSubmit}>
                 <div className="login-form">
                     <div className="mb-3">
@@ -43,39 +87,24 @@ const Login = () => {
                             onChange={handlePassInputChange} />
                     </div>
 
-                    <div>
-                        <div className="dropdown">
-                            <button
-                                className="btn btn-secondary dropdown-toggle"
-                                type="button"
-                                id="dropdownMenuButton"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                            >
-                                {selectedOption || 'Select your role'}
-                            </button>
-                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li>
-                                    <a className="dropdown-item" onClick={handleOptionSelect}>
-                                        Teacher
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item" onClick={handleOptionSelect}>
-                                        Student
-                                    </a>
-                                </li>
-                            </ul>
+                    <Link type="submit" className="btn btn-success" onClick={hitSubmit} id="s" to="/teacherDash">
+                        Submit
+                    </Link>
+
+                    <div className='notice'>
+                        <h4 className='center'> Important </h4>
+                        <div className="notice-body">
+                            <ol>
+                                <li>Please contact Organization Admin to <b>Create Account.</b></li>
+                                <li> Once you login, you'll be redirected to dashboard according to your role.</li>
+                            </ol>
                         </div>
                     </div>
-
-                    <Link type="submit" className="btn btn-success" id="s" to="/teacherDash">
-                        Login
-                    </Link>
                 </div>
             </form>
 
         </div>
+        
     );
 }
 

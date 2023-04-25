@@ -10,8 +10,8 @@
 
 .login {
     margin:4rem 4rem 1rem 2rem;
-    background-color: rgba(133, 153, 0, 0.1);
-    border:2px solid rgb(133, 153, 0);
+    background-color: #268ad221;
+    border:2px solid #268bd2;
 }
 
 .sign-up {

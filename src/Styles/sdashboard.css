@@ -26,3 +26,14 @@
     font-weight: bold;
 
 }
+
+.register {
+    display: flex;
+    justify-content: center;
+    margin-top:2rem;
+}
+
+
+.register  button {
+    margin-left:1rem;
+}

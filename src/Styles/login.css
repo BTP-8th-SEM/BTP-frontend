@@ -1,8 +1,9 @@
 #s {
-    background-color:rgb(133, 153, 0);
+    /* background-color:rgb(133, 153, 0); */
+    background-color: #268bd2;
     border:none;
     width:100%;
-    margin-top:1rem;
+    margin-top:2rem;
     padding:0.5rem;
 }
 
@@ -14,4 +15,9 @@
 .btn-link {
     text-decoration: none;
     color:inherit;
+}
+
+.notice {
+    margin-top: 2rem;
+    padding: 2rem;
 }

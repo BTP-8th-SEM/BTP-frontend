@@ -1,9 +1,32 @@
 .chart {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 .main {
-    margin: 3rem;
+    margin: 1rem;
     display:flex;
     flex-direction: column;
     justify-content: center;
+}
+.center {
+    display: flex;
+    justify-content: center;
+}
+.center-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.result-bg {
+    background-color: #bbe8ff;
+    border-radius: 5px;
+}
+.res-m {
+    margin:0;
+}
+
+.graph-arr{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center ;
 }

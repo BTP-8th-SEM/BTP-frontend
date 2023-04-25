@@ -13,6 +13,7 @@ import {
 import CreateTest from './Components/ExamPage/CreateTest';
 import ADashboard from './Components/Analysis/ADashboard';
 import ClassAnalyticsDashboard from './Components/Analysis/ClassAnalyticsDashboard'
+import EmailState from './Context/User/EmailState';
 
 function App() {
 
@@ -29,22 +30,26 @@ function App() {
 		}
 		, []);
 	return (
-		<div className="App">
-			<NavBar />
+		<EmailState>
+			<div className="App">
+				<NavBar />
+				<div className='center'>
+					<div>
+						<Switch>
+							<Route path="/" element={<Auth />} />
+							<Route path="/teacherDash" element={<TDashboard tname={tname} tid={tid} />} />
+							<Route path="/studentDash" element={<SDashboard sname={sname} sid={sid} />} />
+							<Route path="/profile" element={<UserProfile />} />
+							<Route path="/classAnalyticsDashboard" element={<ClassAnalyticsDashboard />} />
+							<Route path="/studentAnalyticsDashboard" element={<ADashboard />} />
+							<Route path="/create-test" element={<CreateTest />} />
+						</Switch>
+					</div>
+				</div>
 
-			<Switch>
-				<Route path="/" element={<Auth />} />
-				<Route path="/teacherDash" element={<TDashboard tname={tname} tid={tid} />} />
-				<Route path="/studentDash" element={<SDashboard sname={sname} sid={sid} />} />
-				<Route path="/profile" element={<UserProfile />} />
-				<Route path="/classAnalyticsDashboard" element={<ClassAnalyticsDashboard />} />
-				<Route path="/create-test" element={<CreateTest />} />
-			</Switch>
-
-			
-
-			<Footer />
-		</div>
+				<Footer />
+			</div>
+		</EmailState>
 	);
 }
 
