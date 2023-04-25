@@ -8,6 +8,9 @@ import axios from 'axios';
 const TDashboard = (props) => {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
+    const [upcomingList, setUpcomingList] = useState([]);
+    const [previousList, setPreviousList] = useState([]);
+
     const fetchUserData = (url) => {
         axios.create({
             baseURL: "http://localhost:8000/"
@@ -26,12 +29,41 @@ const TDashboard = (props) => {
             // always executed
           });
     }
+    const fetchUpcoming = (email) => {
+        axios.create({
+            baseURL: "http://localhost:8000/"
+        })
+            .get(`/upcoming-test-list-teacher?email=${email}`)
+            .then(function (response) {
+                console.log(response.data);
+                setUpcomingList(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const fetchPrevious = (email) => {
+        axios.create({
+            baseURL: "http://localhost:8000/"
+        })
+            .get(`/prev-test-list-teacher?email=${email}`)
+            .then(function (response) {
+                console.log(response.data);
+                setPreviousList(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
     useEffect(()=> {
-        setEmail('ramesh@email.com');
-        const temp_email = 'ramesh@email.com';
+        setEmail('amitabh@gmail.com');
+        const temp_email = 'amitabh@gmail.com';
         console.log("email:"+ email);
         const url = `/getUserByEmail/${temp_email}`;
         fetchUserData(url);
+        fetchUpcoming(temp_email);
+        fetchPrevious(temp_email);
         
     }, []);
     return (
@@ -49,12 +81,12 @@ const TDashboard = (props) => {
             </div>
             <div className="upcoming-sec">
                 <h3 className="center">Upcoming Tests</h3>
-                <UpTests />
+                <UpTests upComingTests={upcomingList} />
             </div>
 
             <div className="previous-sec">
                 <h3 className="center">Previous Tests</h3>
-                <TPreTests />
+                <TPreTests previousTests={previousList}/>
             </div>
         </div>
     );
