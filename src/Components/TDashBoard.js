@@ -86,7 +86,7 @@ const TDashboard = (props) => {
 
             <div className="previous-sec">
                 <h3 className="center">Previous Tests</h3>
-                <TPreTests previousTests={previousList}/>
+                <TPreTests previousTests={previousList} email={email}/>
             </div>
         </div>
     );

@@ -35,7 +35,7 @@ const TPreTests = (props) => {
         <div>
             <div className='cards-container'>
                 {props.previousTests.map((test, index) => (
-                   <TPreTestCard test = {test}/>
+                   <TPreTestCard test = {test} />
                 ))}
             </div>
         </div>
