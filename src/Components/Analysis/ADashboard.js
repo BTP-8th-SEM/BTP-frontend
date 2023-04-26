@@ -3,7 +3,11 @@ import { QuestionVSMarks, TopicVsMarks, SubjectVsMarks } from "./Data";
 import BarChart from "./../Analysis/Bar_I_Q_M";
 import BarITM from "./../Analysis/Bar_I_T_M";
 import "./../../Styles/adashboard.css";
+import { useParams } from "react-router-dom";
 const ADashboard = () => {
+    const {
+        testId, studentId
+    } = useParams();
     const [testName, setTestName] = useState("DSA T2");
     const [testResult, setTestResult] = useState("Pass");
     const [yourMarks, setYourMarks] = useState("24");
@@ -73,6 +77,7 @@ const ADashboard = () => {
             }
         ]
     });
+
 
     return (
         <div>

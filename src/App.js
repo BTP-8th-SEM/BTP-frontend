@@ -42,7 +42,7 @@ function App() {
 							<Route path="/studentDash" element={<SDashboard sname={sname} sid={sid} />} />
 							<Route path="/profile" element={<UserProfile />} />
 							<Route path="/classAnalyticsDashboard/:testId" element={<ClassAnalyticsDashboard />} />
-							<Route path="/studentAnalyticsDashboard" element={<ADashboard />} />
+							<Route path="/studentAnalyticsDashboard/:testId/:studentId" element={<ADashboard />} />
 							<Route path="/create-test" element={<CreateTest />} />
 							<Route path="/test/:testId" element={<Test />} />
 						</Switch>

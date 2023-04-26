@@ -6,6 +6,7 @@ import "./../../Styles/class_adashboard.css";
 import AuthContext from "../../Context/User/AuthContext";
 import { useParams } from "react-router-dom";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 const ClassAnalyticsDashboard = (props) => {
     const {testId} = useParams();
     console.log(testId)
@@ -17,7 +18,14 @@ const ClassAnalyticsDashboard = (props) => {
         test_name: "DSA T2",
         total_marks: "25"
     });
+    // const [testAnalysis, setTestAnalysis] = useState({
+
+    // });
+ 
     const [studentList, setStudentList] = useState([]);
+    const [PassFailV, setPassFailV] = useState({});
+    const [ahlV, setAhlV] = useState([]);
+    
     const PassFail = {
         total: "25",
         pass: "20",
@@ -37,52 +45,26 @@ const ClassAnalyticsDashboard = (props) => {
         labels: ['Pass', "Fail"],
         datasets: [
             {
-                data: [PassFail.pass, PassFail.fail]
+                data: [PassFailV.pass, PassFailV.fail]
             }
         ]
     });
-
-    // const studentList = [
-    //     {
-    //         id: 1,
-    //         name: "Gaurav Sonawane",
-    //         marks: "25",
-    //         total: "25"
-    //     },
-    //     {
-    //         id: 2,
-    //         name: "Shreyas Kadu",
-    //         marks: "24",
-    //         total: "25"
-    //     },
-    //     {
-    //         id: 3,
-    //         name: "Prasad Dalwee",
-    //         marks: "25",
-    //         total: "25"
-    //     },
-    //     {
-    //         id: 4,
-    //         name: "Tarun Reddy",
-    //         marks: "24",
-    //         total: "25"
-    //     }
-    // ];
+    
 
     const [ahlData, setAhlData] = useState({
-        labels: ahl.map((data) => ""),
+        labels: ahlV.map((data) => ""),
         datasets: [
             {
                 label: "Average Marks",
-                data: ahl.map((data) => data.average)
+                data: ahlV.map((data) => data.average)
             },
             {
                 label: "Highest Marks",
-                data: ahl.map((data) => data.highest)
+                data: ahlV.map((data) => data.highest)
             },
             {
                 label: "Lowest Marks",
-                data: ahl.map((data) => data.lowest)
+                data: ahlV.map((data) => data.lowest)
             }
         ]
     });
@@ -114,10 +96,70 @@ const ClassAnalyticsDashboard = (props) => {
             });
     }
 
-        useEffect(() => {
-            fetchTestDetails(testId);
-            fetchStudentsList(testId);
-        }, []);
+    const fetchClassAnalysis = (id) => {
+        axios.create({
+            baseURL: "http://localhost:8000/"
+        })
+            .get(`/getAnalysisTestById/${id}`)
+            .then(function (response) {
+                const classAnalysis = response.data;
+                console.log(classAnalysis);
+                setPassFailV({
+                    total: classAnalysis.totalAppeared,
+                    pass: classAnalysis.noOfPassed,
+                    fail: classAnalysis.noOfFailed
+                });
+                setAhlV([{
+                    average: classAnalysis.avgMarks,
+                    highest: classAnalysis.highestMarks,
+                    lowest: classAnalysis.lowestMarks
+                }])
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    useEffect(()=>{
+        console.log('pass',PassFailV);
+        setAhlData({
+            labels: ahlV.map((data) => ""),
+            datasets: [
+                {
+                    label: "Average Marks",
+                    data: ahlV.map((data) => data.average)
+                },
+                {
+                    label: "Highest Marks",
+                    data: ahlV.map((data) => data.highest)
+                },
+                {
+                    label: "Lowest Marks",
+                    data: ahlV.map((data) => data.lowest)
+                }
+            ]
+        })
+    },[PassFailV]);
+
+    useEffect(()=>{
+        console.log('pass',PassFailV);
+        setPassFailData({
+                labels: ['Pass', "Fail"],
+                datasets: [
+                    {
+                        data: [PassFailV.pass, PassFailV.fail]
+                    }
+                ]
+        })
+    },[PassFailV]);
+
+    
+
+ 
+    useEffect(() => {
+        fetchTestDetails(testId);
+        fetchStudentsList(testId);
+        fetchClassAnalysis(testId);
+    }, []);
     return (
         <div className="main">
             <div>
@@ -152,6 +194,7 @@ const ClassAnalyticsDashboard = (props) => {
                 <div>
                     <div className="class-analysis center">
                         <div className="pvf">
+                            {PassFailV.pass}
                             <Pie data={{
                                 labels: passFailData.labels,
                                 datasets: passFailData.datasets
@@ -180,8 +223,8 @@ const ClassAnalyticsDashboard = (props) => {
                                     <tr key={idx }>
                                         <th scope="row">{obj.id}</th>
                                         <td>{obj.firstName} {obj.lastName}</td>
-                                        <td>{obj.marks}/{obj.total}</td>
-                                        <td className="center"><button className="btn btn-primary">Analysis</button></td>
+                                        <td>{obj.obtainedMarks}/{TestDetails['maxMarks']}</td>
+                                        <td className="center"><Link className="btn btn-primary" to={`/studentAnalyticsDashboard/${TestDetails['id']}/${obj.id}`}>Analysis</Link></td>
                                     </tr>
                                 ))}
                             </tbody>
