@@ -35,7 +35,7 @@ const PreTests = (props) => {
         <div>
             <div className='cards-container'>
                 {props.previousTests.map((test, index) => (
-                   <PreTestCard test = {test}/>
+                   <PreTestCard test = {test} key={index}/>
                 ))}
             </div>
         </div>
