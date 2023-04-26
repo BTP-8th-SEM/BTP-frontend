@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import './../Styles/login.css';
 import { Link, redirect } from 'react-router-dom';
 import axios from 'axios';
-import EmailContext from '../Context/User/AuthContext';
+import AuthContext from '../Context/User/AuthContext';
 
 const Login = () => {
-    const {auth, updateAuth}= useContext(EmailContext);
+    const {auth, updateAuth}= useContext(AuthContext);
     const navigate = useNavigate();
     const [emailVal, setEmailVal] = useState(auth.email);
     const [passVal, setPassVal] = useState('');
