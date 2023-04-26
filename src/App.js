@@ -6,21 +6,22 @@ import Login from './Components/Login';
 import TDashboard from './Components/TDashBoard';
 import SDashboard from './Components/Student/SDashBoard';
 import UserProfile from './Components/UserProfile';
-import TakeTest from './Components/TakeTest';
+import Test from './Components/ExamPage/Test';
 import {
 	Routes as Switch,
 	Route,
 } from "react-router-dom";
-import CreateTest from './Components/ExamPage/CreateTest';
+import UpdateTest from './Components/ExamPage/UpdateTest';
 import ADashboard from './Components/Analysis/ADashboard';
-import ClassAnalyticsDashboard from './Components/Analysis/ClassAnalyticsDashboard'
+import ClassAnalyticsDashboard from './Components/Analysis/ClassAnalyticsDashboard';
+import CreateTest from './Components/ExamPage/CreateTest';
 import Auth from './Context/User/Auth';
 
 function App() {
-
 	const [tname, setTName] = useState("");
 	const [tid, setTid] = useState("");
 	const [sname, setSName] = useState("");
+	const role= 'teacher'
 	const [sid, setSid] = useState("");
 	useEffect(
 		() => {
@@ -43,8 +44,7 @@ function App() {
 							<Route path="/classAnalyticsDashboard/:testId" element={<ClassAnalyticsDashboard />} />
 							<Route path="/studentAnalyticsDashboard/:testId/:studentId" element={<ADashboard />} />
 							<Route path="/create-test" element={<CreateTest />} />
-							<Route path="/take-test" element={<TakeTest />} />
-							<Route path="/test/:testId" element={<CreateTest />} />
+							<Route path="/test/:testId" element={<Test />} />
 						</Switch>
 					</div>
 
