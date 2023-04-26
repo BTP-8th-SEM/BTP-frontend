@@ -29,7 +29,7 @@ const UpTests = (props) => {
         <div>
             <div className='cards-container'>
                 {props.upComingTests.map((test, index) => (
-                   <UpTestCard test = {test}/>
+                   <UpTestCard test = {test} key={index}/>
                 ))}
             </div>
         </div>

@@ -1,5 +1,4 @@
 import './../Styles/up-test-card.css'
-import TakeTest from './ExamPage/TakeTest';
 const UpTestCard = (props) => {
     return (
         <div className="card">

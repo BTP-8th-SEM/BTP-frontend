@@ -64,7 +64,7 @@ function TakeTest() {
         
     </div>
     <div className="question-navigator">
-            {questions && questions.map((_,idx)=><div className={`question-number ${idx==currentQuestionIdx && 'active'}`} key={idx} onClick={()=>setCurrentQuestionIdx(idx)}>{idx+1}</div>)}
+            {questions && questions.map((_,idx)=><div className={`question-number ${idx===currentQuestionIdx && 'active'}`} key={idx} onClick={()=>setCurrentQuestionIdx(idx)}>{idx+1}</div>)}
         </div>
     </div>
   )

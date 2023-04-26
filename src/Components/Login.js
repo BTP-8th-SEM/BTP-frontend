@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import './../Styles/login.css';
-import { Link, redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../Context/User/AuthContext';
 
@@ -58,9 +58,8 @@ const Login = () => {
             // {email, updateAuth}updateAuth(emailVal);
             navigate(role === 'teacher' ? '/teacherDash' : '/studentDash', { replace: true });
             
-            console.log("in use effect : " + auth.email);
         }}
-        ,[isAuthenticated, role])
+        ,[isAuthenticated, role,navigate])
 
 
     return (

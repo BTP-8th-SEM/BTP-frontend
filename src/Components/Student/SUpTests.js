@@ -29,7 +29,7 @@ const SUpTests = (props) => {
         <div>
             <div className='cards-container'>
                 {props.supComingTests.map((test, index) => (
-                   <SUpTestCard test = {test}/>
+                   <SUpTestCard test = {test} key={index}/>
                 ))}
             </div>
         </div>
