@@ -4,9 +4,9 @@ function UpdateTest() {
     const EmptyQuestion = {
         id: (()=>Math.random())(),
         question:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta eligendi excepturi qui fuga eaque, quia sapiente odit earum amet error quam fugiat. Dicta quo quasi corporis veritatis quas, ea autem!",
-        type:'mcq',
+        type:'MCQ',
         options:['option','option','option','option'],
-        answers:[],
+        answers:2,
         maxMarks:0
       }
     const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);

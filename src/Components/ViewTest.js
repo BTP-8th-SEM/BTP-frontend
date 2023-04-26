@@ -51,9 +51,7 @@ function TakeTest() {
         }
         }
         prevClick={()=>{
-            if (currentQuestionIdx>0){
-                    setCurrentQuestionIdx(idx=> idx-1);
-            }
+
             }}
         nextClick={()=>{
             if (currentQuestionIdx<questions.length-1){

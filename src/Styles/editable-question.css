@@ -38,7 +38,19 @@
     border-radius:16px;
     margin: 0 10px
 }
-.save-prev, .save-next{
+.save{
+    justify-self: center;
+    margin: 10px;
+}
+.save-prev{
+    justify-self: start;
+    margin: 10px;
+}
+.save-next{
+    justify-self: end;
+    margin: 10px;
+}
+.save-prev, .save-next,.save{
     text-align:center;
     background:#212529;
     width:150px;
@@ -73,10 +85,6 @@
     border:none;
     outline: none;
 }
-.answer-input:hover{
-    background-color: #212529;
-    color:white;
-}
 .options{
     grid-column: 1/4;
     margin: 10px;
@@ -91,6 +99,10 @@
     margin:10px 0;
 }
 .question-option:hover{
+    background-color:#212529;
+    color:white;
+}
+.question-option:hover .answer-input{
     background-color:#212529;
     color:white;
 }

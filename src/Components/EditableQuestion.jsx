@@ -6,7 +6,7 @@ function updateArray(arr, idx, value){
     return arr;
 }
 function EditableQuestion(props) {
-    const {updateQuestion, question,nextClick} = props;
+    const {updateQuestion, question,nextClick,prevClick,saveClick} = props;
     console.log(updateQuestion)
   return (
     <div className='question-container'>
@@ -18,23 +18,24 @@ function EditableQuestion(props) {
             }} /> marks</div>
         <div className="question">
             <EditableLabel labelClass='question-label' inputClass="question-input" initialValue={question.question} value={question.question} save={value=>{
-                updateQuestion({...question, question:value})
+                updateQuestion({...question, question:value.trim()})
             }} />
         </div>
-        {question.options && question.type === 'mcq' && <div className='options'>
+        {question.options && question.type === 'MCQ' && <div className='options'>
             {
             question.options.map((option, idx)=><div key={Math.random()} className='question-option'>
                 <input name={question.id} type="radio"  value={option} />
                 <EditableLabel labelClass='answer-label' value={option} inputClass='answer-input' initialValue={option} save={value=>{
                     // console.log(value)
-                updateQuestion({...question, options:updateArray(question.options,idx, value)})
+                updateQuestion({...question, options:updateArray(question.options,idx, value.trim())})
             }}/>
             </div>)
             }
         </div>
         }
-        <button className='save-prev' onClick={nextClick}>Save & Previous</button>
-        <button className='save-next' onClick={nextClick}>Save & Next</button>
+        <button className='save-prev' onClick={prevClick}>Previous</button>
+        <button className='save' onClick={saveClick}>Save</button>
+        <button className='save-next' onClick={nextClick}>Next</button>
     </div>
   )
 }

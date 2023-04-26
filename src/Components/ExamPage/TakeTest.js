@@ -7,7 +7,7 @@ function TakeTest() {
         {
             "id": 0.05204342462500566,
             "question": "question 1\n",
-            "type": "mcq",
+            "type": "MCQ",
             "options": [
                 "option",
                 "option2",
@@ -20,7 +20,7 @@ function TakeTest() {
         {
             "id": 0.9318692907735033,
             "question": "question 2",
-            "type": "mcq",
+            "type": "MCQ",
             "options": [
                 "option1",
                 "option",
