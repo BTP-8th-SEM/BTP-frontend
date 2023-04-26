@@ -3,15 +3,14 @@ import { useNavigate } from "react-router-dom";
 import './../Styles/login.css';
 import { Link, redirect } from 'react-router-dom';
 import axios from 'axios';
-import EmailContext from '../Context/User/EmailContext';
+import EmailContext from '../Context/User/AuthContext';
 
 const Login = () => {
-    const emailContextVar = useContext(EmailContext);
+    const {auth, updateAuth}= useContext(EmailContext);
     const navigate = useNavigate();
-    const [emailVal, setEmailVal] = useState('');
+    const [emailVal, setEmailVal] = useState(auth.email);
     const [passVal, setPassVal] = useState('');
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [role, setRole] = useState(null);
+    const {role,isAuthenticated} = auth;
 
 
     const fetchApiData = async (url) => {
@@ -20,9 +19,7 @@ const Login = () => {
         })
         .get(url).then(
             (response) => {
-                setIsAuthenticated(response.data['isAuthenticated']);
-                emailContextVar.update(emailVal)
-                setRole(response.data['role']);
+                updateAuth({'email':emailVal,isAuthenticated:response.data['isAuthenticated'],role:response.data['role']})
             }
         ).catch(function (error) {
             // handle error
@@ -56,18 +53,23 @@ const Login = () => {
         }
         
     }
-        if(isAuthenticated){
-            // emailContextVar.update(emailVal);
-            navigate(role === 'Teacher' ? '/teacherDash' : '/studentDash', { replace: true });
+    useEffect(
+        ()=>{if(isAuthenticated){
+            // {email, updateAuth}updateAuth(emailVal);
+            navigate(role === 'teacher' ? '/teacherDash' : '/studentDash', { replace: true });
             
-            console.log("in use effect : " + emailContextVar.email);
-        }
+            console.log("in use effect : " + auth.email);
+        }}
+        ,[isAuthenticated, role])
 
 
     return (
+        <div className="auth">
+        <div className="login">
+        
             <div className="login-box">
             <h2 className='center'> Login </h2>
-            {emailContextVar.email}
+            {auth.email}
             <form onSubmit={hitSubmit}>
                 <div className="login-form">
                     <div className="mb-3">
@@ -104,7 +106,9 @@ const Login = () => {
             </form>
 
         </div>
-        
+        </div>
+
+    </div>
     );
 }
 

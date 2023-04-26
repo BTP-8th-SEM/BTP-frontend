@@ -3,10 +3,10 @@ import SUpTests from "./SUpTests";
 import PreTests from "./../PreTests";
 import { useState, useContext, useEffect } from "react";
 import axios from 'axios';
-import EmailContext from "../../Context/User/EmailContext";
+import AuthContext from "../../Context/User/AuthContext";
 const SDashboard = (props) => {
-    const emailContextVar = useContext(EmailContext);
-    const [email, setEmail] = useState("");
+    const {auth} = useContext(AuthContext);
+    const {email} = auth
     const [name, setName] = useState("");
     const [testCode, setTestCode] = useState('');
 
@@ -86,16 +86,14 @@ const SDashboard = (props) => {
     }
 
     useEffect(() => {
-        // setEmail(emailContextVar.email);
-        setEmail('shahrukh@gmail.com');
-        const temp_email = 'shahrukh@gmail.com';
-        console.log("email:" + email);
-        const url = `/getUserByEmail/${temp_email}`;
+        // setEmail(AuthContextVar.email);
+        // setEmail(auth.email);
+        const url = `/getUserByEmail/${email}`;
         fetchUserData(url);
-        fetchUpcoming(temp_email);
-        fetchPrevious(temp_email);
+        fetchUpcoming(email);
+        fetchPrevious(email);
 
-    }, []);
+    }, [email]);
 
     return (
         <div className="main center">
