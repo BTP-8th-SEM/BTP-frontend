@@ -8,9 +8,10 @@ const Auth = (props) => {
         role:''
     };
     const navigate = useNavigate()
-    const [auth, setAuth] = useState(JSON.parse(window.localStorage.getItem('auth'))||UnAuthenicated);
+    const [auth, setAuth] = useState(JSON.parse(window.localStorage.getItem('auth'))||{...UnAuthenicated});
     const logout = ()=>{
-        setAuth(UnAuthenicated)
+        setAuth({...UnAuthenicated})
+        window.localStorage.setItem('auth',JSON.stringify({...UnAuthenicated}))
         navigate('/')
     }
 
