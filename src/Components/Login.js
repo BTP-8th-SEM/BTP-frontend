@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import './../Styles/login.css';
+import './../Styles/auth.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../Context/User/AuthContext';
+import welcome from "./../Images/welcome.jpg";
 
 const Login = () => {
     const {auth, updateAuth}= useContext(AuthContext);
@@ -29,7 +31,11 @@ const Login = () => {
             // always executed
           });
     }
-    
+    useEffect(()=>{
+        if(isAuthenticated){
+            navigate(role === 'Teacher' ? '/teacherDash' : '/studentDash');
+        }
+    },[isAuthenticated,role])
     const handleEmailInputChange = (e) => {
         setEmailVal(e.target.value);
     }
@@ -47,9 +53,6 @@ const Login = () => {
             const LOGIN_API = `/login?user_email=${emailVal}&password=${passVal}`
             console.log(LOGIN_API)
             fetchApiData(LOGIN_API);
-            // if(isAuthenticated === false) {
-            //     alert('Invalid Credentials!!!');
-            // }
         }
         
     }
@@ -64,11 +67,13 @@ const Login = () => {
 
     return (
         <div className="auth">
+             <div className="sign-up">
+                <img src={welcome} />
+            </div>
         <div className="login">
         
             <div className="login-box">
             <h2 className='center'> Login </h2>
-            {auth.email}
             <form onSubmit={hitSubmit}>
                 <div className="login-form">
                     <div className="mb-3">

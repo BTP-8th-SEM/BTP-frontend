@@ -1,49 +1,43 @@
-import {useState, useEffect} from 'react'
-import EditableQuestion from '../EditableQuestion';
+import axios from "axios"
+import { useContext, useState } from "react";
+import AuthContext from "../../Context/User/AuthContext";
+import { useNavigate } from "react-router-dom";
 function CreateTest() {
-    const EmptyQuestion = {
-        id: (()=>Math.random())(),
-        question:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta eligendi excepturi qui fuga eaque, quia sapiente odit earum amet error quam fugiat. Dicta quo quasi corporis veritatis quas, ea autem!",
-        type:'mcq',
-        options:['option','option','option','option'],
-        answers:[],
-        maxMarks:0
-      }
-    const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
-    const [questions, setQuestions] = useState([{...EmptyQuestion}]);
-      useEffect(()=>{
-        console.log(questions);
-      },[questions])
-      const question = questions[currentQuestionIdx];
+  const navigate = useNavigate();
+  const {auth} = useContext(AuthContext);
+  const {email} = auth;
+  const [testInfo, setTestInfo] = useState({
+    name:'',
+    maxMarks:0,
+    passMarks:0,
+    startTime:'27-04-2023 11:59 AM',
+    endTime:'27-04-2023 03:00 PM',
+  });
   return (
-    <div className='create-test'>
-    <div className='question-editor'>
-        <EditableQuestion key={question.id} question={question} idx={currentQuestionIdx} updateQuestion={(question)=>
-        {
-          setQuestions(questions=>{
-            let newQuestions = [...questions];
-            newQuestions[currentQuestionIdx] = question;
-            console.log(newQuestions)
-            return newQuestions;
-
-          })
+  <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'75vw',paddingTop:'200px'}}>
+    <form className='creat-test-form' style={{display:'flex',flexDirection:'column',height:'100%',width:'max-content'}}>
+      <label>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input style={{padding:'10px',borderRadius:'10px'}} value={testInfo.name} onChange={(e) => setTestInfo(prev=>{return {...prev,name:e.target.value}})} name="name" type="text"/></label>
+      <label>Max Marks&nbsp;&nbsp;:<input style={{padding:'10px',borderRadius:'10px'}} name="maxMarks" value={testInfo.maxMarks} onChange={(e) => setTestInfo(prev=>{return {...prev,maxMarks:e.target.value}})} type="number"/></label>
+      <label>Pass Marks  &nbsp;:<input style={{padding:'10px',borderRadius:'10px'}} name="passMarks" value={testInfo.passMarks} onChange={(e) => setTestInfo(prev=>{return {...prev,passMarks:e.target.value}})} type="number"/></label>
+      <label>Start Time&nbsp;&nbsp;&nbsp;:<input style={{padding:'10px',borderRadius:'10px'}} name="startTime" value={testInfo.startTime} onChange={(e) => setTestInfo(prev=>{return {...prev,startTime:e.target.value}})} type="text"/></label>
+      <label>End Time &nbsp;&nbsp;&nbsp;&nbsp;:<input style={{padding:'10px',borderRadius:'10px'}} name="endTime" value={testInfo.endTime} onChange={(e) => setTestInfo(prev=>{return {...prev,endTime:e.target.value}})} type="text"/></label>
+      <button style={{borderRadius:'10px'}}  onClick={(e)=>{
+        e.preventDefault();
+        console.log(JSON.stringify({...testInfo,teacherEmail:email,testType: "MCQ",}))
+        axios.post(`http://localhost:8000/createTest`,{...testInfo,teacherEmail:email,testType: "MCQ",})
+        .then(function (response) {
+          console.log(response,response.data.id,`test/${response.data.id}`)
+        if(response.data.id){
+          console.log(`test/${response.data.id}`)
+          navigate(`/test/${response.data.id}`);
         }
-        }
-        nextClick={()=>{
-            if (currentQuestionIdx<questions.length-1){
-                    setCurrentQuestionIdx(idx=> idx+1);
-            }else{
-                setQuestions(questions=>[...questions,{...EmptyQuestion}])
-                setCurrentQuestionIdx(idx=> idx+1);
-            }
-            }}
-        />
-        
-    </div>
-    <div className="question-navigator">
-            {questions.map((_,idx)=><div className={`question-number ${idx==currentQuestionIdx && 'active'}`} key={idx} onClick={()=>setCurrentQuestionIdx(idx)}>{idx+1}</div>)}
-        </div>
-    </div>
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      }}>Create Test</button>
+    </form>
+  </div>
   )
 }
 
