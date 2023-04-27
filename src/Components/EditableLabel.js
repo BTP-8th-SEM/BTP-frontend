@@ -19,9 +19,19 @@ const EditableLabel = ({
 	useEffect(() => {
 		if (view === 'text') {
 			textInput.current.focus();
+			textInput.current.select();
 		}
 	}, [view, textInput]);
 
+	const handleKeyDown = e => {
+		if (e.keyCode === 13) {
+			setValue(e.target.value);
+			setPrevious(e.target.value);
+			setView('label');
+
+			save(e.target.value);
+		}
+	  };
 	const keyUp = (e) => {
 		if (disableKeys === true) {
 			return;
@@ -72,6 +82,7 @@ const EditableLabel = ({
 						save(e.target.value);
 					}}
 					onKeyUp={keyUp}
+					onKeyDown={handleKeyDown}
 				/>
 			</>
 		);

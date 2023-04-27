@@ -35,7 +35,7 @@ const Login = () => {
         if(isAuthenticated){
             navigate(role === 'Teacher' ? '/teacherDash' : '/studentDash');
         }
-    },[isAuthenticated,role])
+    },[isAuthenticated,role,navigate])
     const handleEmailInputChange = (e) => {
         setEmailVal(e.target.value);
     }
