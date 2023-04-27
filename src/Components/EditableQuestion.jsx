@@ -23,8 +23,12 @@ function EditableQuestion(props) {
         </div>
         {question.options && question.type === 'MCQ' && <div className='options'>
             {
-            question.options.map((option, idx)=><div key={Math.random()} className='question-option'>
-                <input name={question.id} type="radio"  value={option} />
+            question.options.map((option, idx)=><div key={Math.random()} className={`question-option ${(idx===question.answer )&&'active' }`} onClick={(e)=>{
+                if(!e.target.classList.contains('answer-label')){
+                    updateQuestion({...question, answer:idx})
+                }
+            }}>
+                <div className="radio"></div>
                 <EditableLabel labelClass='answer-label' value={option} inputClass='answer-input' initialValue={option} save={value=>{
                     // console.log(value)
                 updateQuestion({...question, options:updateArray(question.options,idx, value.trim())})

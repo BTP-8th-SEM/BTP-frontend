@@ -79,11 +79,30 @@
 .question-option .answer-label, .question-option .answer-input{
     margin: 0 10px;
 }
+.question-option .radio{
+    height:10px;
+    width: 10px;
+    box-shadow: 0 0 0 5px grey;
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 100%;
+    flex:none;
+    background-color: black;
+    margin: 0 20px
+}
+.question-option:hover .radio, .question-option.active .radio{
+    background-color: white;
+}
+
 .answer-input{
     width: 1100px;
     height: 30px;
     border:none;
     outline: none;
+}
+.question-option.active .answer-input{
+    background-color: #212529;
+    color:white;
 }
 .options{
     grid-column: 1/4;
@@ -93,17 +112,23 @@
 .question-option{
     display: flex;
     justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
     border-radius: 10px;
     border: 1px solid #212529;
     padding: 10px;
     margin:10px 0;
 }
-.question-option:hover{
+.question-option.active{
     background-color:#212529;
     color:white;
 }
-.question-option:hover .answer-input{
-    background-color:#212529;
+.question-option:hover:not(.active){
+ background-color: #6c6f71;
+ color: white;
+}
+.question-option:hover:not(.active) .answer-input{
+    background-color:#6c6f71;
     color:white;
 }
 .question-navigator{
