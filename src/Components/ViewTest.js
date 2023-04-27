@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import Question from './Question';
-function TakeTest() {
+function ViewTest() {
     const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
     const [questions, setQuestions] = useState(
       [
@@ -68,4 +68,4 @@ function TakeTest() {
   )
 }
 
-export default TakeTest
+export default ViewTest

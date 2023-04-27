@@ -10,8 +10,8 @@ function CreateTest() {
     name:'',
     maxMarks:0,
     passMarks:0,
-    startTime:'27-04-2023 11:59 AM',
-    endTime:'27-04-2023 03:00 PM',
+    startTime:'28-04-2023 11:59 AM',
+    endTime:'28-04-2023 03:00 PM',
   });
   return (
   <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'75vw',paddingTop:'200px'}}>
