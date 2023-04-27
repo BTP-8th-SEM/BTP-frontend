@@ -221,10 +221,10 @@ const ClassAnalyticsDashboard = (props) => {
                             <tbody>
                                 {studentList.map((obj,idx) => (
                                     <tr key={idx }>
-                                        <th scope="row">{obj.id}</th>
+                                        <th scope="row">{obj.userId}</th>
                                         <td>{obj.firstName} {obj.lastName}</td>
                                         <td>{obj.obtainedMarks}/{TestDetails['maxMarks']}</td>
-                                        <td className="center"><Link className="btn btn-primary" to={`/studentAnalyticsDashboard/${TestDetails['id']}/${obj.id}`}>Analysis</Link></td>
+                                        <td className="center"><Link className="btn btn-primary" to={`/studentAnalyticsDashboard/${TestDetails['id']}/${obj.userId}`}>Analysis</Link></td>
                                     </tr>
                                 ))}
                             </tbody>
