@@ -1,7 +1,7 @@
 import UpdateTest from "./UpdateTest";
 import AuthContext from "../../Context/User/AuthContext";
 import { useContext } from "react";
-import TakeTest from "../ViewTest";
+import TakeTest from "./TakeTest";
 function Test() {
     const {auth} = useContext(AuthContext);
     const {role} = auth;
